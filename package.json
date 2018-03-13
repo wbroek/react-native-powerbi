@@ -1,0 +1,31 @@
+{
+  "name": "react-native-powerbi",
+  "version": "0.1.0",
+  "description": "PowerBI Embed for React Native",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wbroek/react-native-powerbi.git"
+  },
+  "keywords": [
+    "react",
+    "native",
+    "powerbi"
+  ],
+  "author": "Wouter van den Broek",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wbroek/react-native-powerbi/issues"
+  },
+  "homepage": "https://github.com/wbroek/react-native-powerbi#readme",
+  "peerDependencies": {
+    "react": ">= 15.x",
+    "react-native": ">= 0.40.x"
+  },
+  "dependencies": {
+    "react-native-wkwebview-reborn": ">= 1.0.0"
+  },
+  "devDependencies": {
+    "babel-preset-react-native": "^4.0.0"
+  }
+}
