@@ -68,7 +68,7 @@ class PowerBIEmbed extends Component {
           report.getFilters()
           .then(filters => {
             let newFilters = filters.concat(${filters})
-            return report.setFilters(filters);
+            return report.setFilters(newFilters);
           });        
         });
         </script>
