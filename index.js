@@ -5,6 +5,7 @@ class PowerBIEmbed extends Component {
   constructor(props) {
     super(props);
     this.configuration = this.setConfiguration(props);
+    this.filters = JSON.stringify(props.filters);
   }
 
   setConfiguration = (props) => {
@@ -34,10 +35,11 @@ class PowerBIEmbed extends Component {
     return JSON.stringify(embedConfiguration);
   }
 
-  getTemplate = configuration => (`<!doctype html>
+  getTemplate = (configuration, filters) => (`<!doctype html>
     <html>
     <head>
         <meta charset="utf-8" />
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/powerbi-client@2.4.7/dist/powerbi.min.js"></script>
         <style>
             html,
@@ -62,6 +64,13 @@ class PowerBIEmbed extends Component {
         var config = ${configuration};
         var reportContainer = document.getElementById('reportContainer');
         var report = powerbi.embed(reportContainer, config);
+        report.on('loaded', function(event) {
+          report.getFilters()
+          .then(filters => {
+            let newFilters = filters.concat(${filters})
+            return report.setFilters(filters);
+          });        
+        });
         </script>
     </body>
     </html>`
@@ -76,7 +85,7 @@ class PowerBIEmbed extends Component {
   }
 
   render() {
-    const html = this.getTemplate(this.configuration);
+    const html = this.getTemplate(this.configuration, this.filters);
     return (
       <WebView source={{ html }} />
     );
